@@ -1,0 +1,25 @@
+{% comment %}
+  One publication in the al-folio style.
+  Used on the home page ("selected publications") and on the publications page.
+  Optional fields you can add to a file in _publications/:
+    authors: "Srishti Chatterjee and Co Author"
+    selected: true        <- shows it on the home page
+    paperurl / slidesurl / bibtexurl / link / doi
+{% endcomment %}
+{% include base_path %}
+{% assign pub = include.pub %}
+<li>
+  <div class="title">{{ pub.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</div>
+  {% if pub.authors %}<div class="author">{{ pub.authors }}</div>{% endif %}
+  <div class="periodical">
+    {% if pub.venue %}<em>{{ pub.venue }}</em>, {% endif %}{{ pub.date | date: "%Y" }}
+  </div>
+  <div class="links">
+    <a href="{{ base_path }}{{ pub.url }}" class="btn">Abs</a>
+    {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" class="btn" target="_blank" rel="noopener">DOI</a>{% endif %}
+    {% if pub.paperurl %}<a href="{{ pub.paperurl }}" class="btn" target="_blank" rel="noopener">PDF</a>{% endif %}
+    {% if pub.link %}<a href="{{ pub.link }}" class="btn" target="_blank" rel="noopener">HTML</a>{% endif %}
+    {% if pub.slidesurl %}<a href="{{ pub.slidesurl }}" class="btn" target="_blank" rel="noopener">Slides</a>{% endif %}
+    {% if pub.bibtexurl %}<a href="{{ pub.bibtexurl }}" class="btn" target="_blank" rel="noopener">Bib</a>{% endif %}
+  </div>
+</li>

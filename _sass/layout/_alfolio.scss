@@ -1,0 +1,320 @@
+/* ==========================================================================
+   AL-FOLIO LOOK
+   --------------------------------------------------------------------------
+   This file restyles the academicpages theme so it looks like the al-folio
+   theme (clean top menu, no sidebar, name as a big heading, photo on the
+   right). It is loaded LAST in assets/css/main.scss so it wins over the
+   default styles. To undo everything, delete the "layout/alfolio" line there.
+
+   Colours: change --global-theme-color below to pick your accent colour.
+   ========================================================================== */
+
+/* ---------- Colours (light mode) ---------- */
+:root {
+  --global-theme-color            : #b509ac;   /* accent: links, active menu item */
+  --global-bg-color               : #ffffff;
+  --global-footer-bg-color        : #ffffff;
+  --global-text-color             : #000000;
+  --global-text-color-light       : #828282;
+  --global-border-color           : rgba(0, 0, 0, 0.1);
+  --global-dark-border-color      : rgba(0, 0, 0, 0.1);
+  --global-link-color             : var(--global-theme-color);
+  --global-link-color-hover       : var(--global-theme-color);
+  --global-link-color-visited     : var(--global-theme-color);
+  --global-masthead-link-color    : #000000;
+  --global-masthead-link-color-hover : var(--global-theme-color);
+  --alfolio-card-shadow           : 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+/* ---------- Colours (dark mode, used when the sun/moon toggle is dark) ---------- */
+html[data-theme="dark"] {
+  --global-theme-color            : #2698ba;
+  --global-bg-color               : #1c1c1d;
+  --global-footer-bg-color        : #1c1c1d;
+  --global-text-color             : #e8e8e8;
+  --global-text-color-light       : #828282;
+  --global-border-color           : #424246;
+  --global-dark-border-color      : #424246;
+  --global-masthead-link-color    : #e8e8e8;
+}
+
+$alfolio-max-width: 930px;
+
+/* ---------- Base typography ---------- */
+html { font-size: 16px; }
+
+body {
+  font-family: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--global-text-color);
+  background-color: var(--global-bg-color);
+  padding-bottom: 0 !important; /* academicpages reserves space for a fixed footer */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  color: var(--global-text-color);
+}
+
+h1 { font-size: 2.5rem; font-weight: 300; }
+h2 { font-size: 2rem;   font-weight: 300; border-bottom: none; }
+h3 { font-size: 1.5rem; font-weight: 400; }
+
+a,
+a:visited {
+  color: var(--global-theme-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--global-theme-color);
+  text-decoration: underline;
+}
+
+hr { border-top: 1px solid var(--global-border-color); }
+
+/* ---------- Top menu bar ---------- */
+.masthead {
+  box-shadow: none;
+  &::after { background: var(--global-border-color); }
+}
+
+.masthead__inner-wrap {
+  max-width: $alfolio-max-width;
+  padding: 0.5em 15px;
+  font-family: inherit;
+
+  @include breakpoint($x-large) { max-width: $alfolio-max-width; }
+}
+
+.greedy-nav {
+  /* Links sit on the right. We keep the list its natural width so the
+     theme's "collapse into a menu button on small screens" script still works. */
+  .visible-links {
+    display: inline-flex;
+    align-items: center;
+    float: right;
+
+    li { display: block; }
+
+    /* Your name on the left (hidden on the home page, like al-folio) */
+    li:first-child {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 400;
+      a { font-size: 1.25rem; margin-left: 0; }
+    }
+
+    a {
+      margin: 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 400;
+      text-transform: lowercase;
+      &:before { display: none; } /* remove the grey underline animation */
+      &:hover { text-decoration: none; }
+    }
+  }
+
+  /* leave room for the menu button when it appears on narrow screens */
+  button:not(.hidden) ~ .visible-links { margin-right: 3rem; }
+}
+
+/* The currently open page is shown in the accent colour */
+.masthead__menu-item.selected a,
+.masthead__menu-item.selected a:hover {
+  color: var(--global-theme-color);
+  font-weight: 400;
+  border-bottom: none;
+}
+
+.masthead__menu-item--lg a { text-transform: none !important; }
+.masthead__menu-item--lg .alfolio-first { font-weight: 700; }
+
+/* ---------- Remove the left sidebar and centre the content ---------- */
+.sidebar { display: none !important; }
+
+#main {
+  max-width: $alfolio-max-width;
+  margin-top: 5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include breakpoint($x-large) { max-width: $alfolio-max-width; }
+}
+
+.page,
+.archive {
+  float: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page__title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.page__content {
+  font-size: 1rem;
+  p, li { font-size: 1rem; }
+  h2 { border-bottom: none; padding-bottom: 0; }
+}
+
+.page__meta,
+.page__share,
+.page__related { display: none; }
+
+/* ---------- Home page (layout: about) ---------- */
+.post-header {
+  margin-bottom: 1.5rem;
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+    strong { font-weight: 700; }
+  }
+
+  .desc {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--global-text-color);
+  }
+}
+
+.profile {
+  float: right;
+  width: 30%;
+  margin: 0 0 1rem 1.5rem;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: var(--alfolio-card-shadow);
+  }
+
+  .more-info {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-family: "Roboto Mono", monospace;
+    line-height: 1.4;
+    p { margin: 0; font-size: 0.875rem; }
+  }
+}
+
+.clearfix::after { content: ""; display: table; clear: both; }
+
+.home-section-title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  a, a:visited, a:hover { color: inherit; text-decoration: none; }
+}
+
+@media (max-width: 575px) {
+  .profile { float: none; width: 100%; margin: 0 0 1.5rem; }
+}
+
+/* ---------- Publication list (home page + publications page) ---------- */
+ol.bibliography {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+
+  li {
+    margin-bottom: 1.25rem;
+    padding: 0;
+  }
+
+  .title  { font-weight: 500; }
+  .author { color: var(--global-text-color); }
+  .periodical em { color: var(--global-text-color); }
+
+  .links {
+    margin-top: 0.4rem;
+
+    a.btn,
+    a.btn:visited {
+      display: inline-block;
+      font-size: 0.64rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 0.6rem;
+      margin: 0 0.3rem 0.3rem 0;
+      border: 1px solid var(--global-text-color) !important;
+      border-radius: 3px;
+      background: transparent !important;
+      color: var(--global-text-color) !important;
+      box-shadow: none;
+      text-decoration: none;
+
+      &:hover {
+        border-color: var(--global-theme-color) !important;
+        color: var(--global-theme-color) !important;
+      }
+    }
+  }
+}
+
+.pub-year {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--global-text-color-light);
+  text-align: right;
+  border-top: 1px solid var(--global-border-color);
+  padding-top: 0.5rem;
+  margin: 2rem 0 1rem;
+}
+
+/* ---------- Social icons row on the home page ---------- */
+.social {
+  text-align: center;
+  margin: 3rem 0 1rem;
+
+  .contact-icons {
+    font-size: 2rem;
+    a, a:visited {
+      color: var(--global-text-color);
+      margin: 0 0.4rem;
+      &:hover { color: var(--global-theme-color); text-decoration: none; }
+    }
+  }
+
+  .contact-note {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---------- Footer: one quiet line of text ---------- */
+.page__footer {
+  position: relative !important;
+  bottom: auto;
+  float: none;
+  margin-top: 3rem;
+  background-color: var(--global-bg-color);
+  border-top: none;
+  color: var(--global-text-color-light);
+
+  footer {
+    max-width: $alfolio-max-width;
+    margin: 0 auto;
+    padding: 1rem 15px;
+    text-align: center;
+  }
+
+  .page__footer-follow { display: none; }
+
+  .page__footer-copyright {
+    font-size: 0.8rem;
+    a { color: var(--global-text-color-light); text-decoration: underline; }
+  }
+}

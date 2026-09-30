@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% comment %}
+  Home page in the al-folio style. Used by _pages/about.md (layout: about).
+  Settings you can change in the front matter of _pages/about.md:
+    subtitle:           lines under your name (HTML allowed, e.g. <br>)
+    profile_image:      file name in /images/ (default: author avatar)
+    profile_note:       small text under the photo (e.g. office / address)
+    selected_papers:    true/false - show "selected publications"
+    social:             true/false - show the icon row at the bottom
+{% endcomment %}
+{% include base_path %}
+{% assign name_parts = site.author.name | default: site.title | split: " " %}
+
+<div id="main" role="main">
+  <article class="page post">
+
+    <header class="post-header">
+      <h1 class="post-title"><strong>{{ name_parts | first }}</strong> {% for part in name_parts offset:1 %}{{ part }} {% endfor %}</h1>
+      {% if page.subtitle %}<p class="desc">{{ page.subtitle }}</p>{% endif %}
+    </header>
+
+    {% assign img = page.profile_image | default: site.author.avatar %}
+    {% if img %}
+    <div class="profile">
+      <img src="{% if img contains '://' %}{{ img }}{% else %}{{ base_path }}/images/{{ img }}{% endif %}" alt="{{ site.author.name }}">
+      {% if page.profile_note %}<div class="more-info">{{ page.profile_note | markdownify }}</div>{% endif %}
+    </div>
+    {% endif %}
+
+    <div class="clearfix page__content">
+      {{ content }}
+    </div>
+
+    {% if page.selected_papers != false %}
+      {% assign selected = site.publications | where: "selected", true | sort: "date" | reverse %}
+      {% if selected.size == 0 %}
+        {% assign selected = site.publications | sort: "date" | reverse %}
+      {% endif %}
+      {% if selected.size > 0 %}
+      <h2 class="home-section-title"><a href="{{ base_path }}/publications/">selected publications</a></h2>
+      <ol class="bibliography">
+        {% for pub in selected limit: 3 %}
+          {% include publication-item.html pub=pub %}
+        {% endfor %}
+      </ol>
+      {% endif %}
+    {% endif %}
+
+    {% if page.social != false %}
+    {% assign a = site.author %}
+    <div class="social">
+      <div class="contact-icons">
+        {% if a.email %}<a href="mailto:{{ a.email }}" title="email"><i class="fas fa-envelope"></i></a>{% endif %}
+        {% if a.orcid %}<a href="{{ a.orcid }}" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i></a>{% endif %}
+        {% if a.googlescholar %}<a href="{{ a.googlescholar }}" title="Google Scholar" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i></a>{% endif %}
+        {% if a.github %}<a href="https://github.com/{{ a.github }}" title="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>{% endif %}
+        {% if a.linkedin %}<a href="https://www.linkedin.com/in/{{ a.linkedin }}" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>{% endif %}
+        {% if a.bluesky %}<a href="https://bsky.app/profile/{{ a.bluesky }}" title="Bluesky" target="_blank" rel="noopener"><i class="fab fa-bluesky"></i></a>{% endif %}
+      </div>
+      {% if page.contact_note %}<div class="contact-note">{{ page.contact_note }}</div>{% endif %}
+    </div>
+    {% endif %}
+
+  </article>
+</div>

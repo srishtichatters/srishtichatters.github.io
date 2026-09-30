@@ -5,8 +5,11 @@
       <nav id="site-nav" class="greedy-nav">
         <button><span class="navicon"></span></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+          {% assign name_parts = site.author.name | default: site.title | split: " " %}
+          <li class="masthead__menu-item masthead__menu-item--lg persist">
+            {% unless page.url == '/' or page.url == '/index.html' %}
+            <a href="{{ base_path }}/"><span class="alfolio-first">{{ name_parts | first }}</span> {% for part in name_parts offset:1 %}{{ part }} {% endfor %}</a>
+            {% endunless %}
           </li>
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
@@ -14,7 +17,7 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
+            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% elsif link.url == '/' and page.url == '/' %}selected{% endif %}">
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
