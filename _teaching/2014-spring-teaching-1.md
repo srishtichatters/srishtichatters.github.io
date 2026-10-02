@@ -1,5 +1,5 @@
 ---
-title: "Public Speaking [COMM-ST 103]"
+title: "COMM_ST 102: Public Speaking"
 collection: teaching
 type: "Undergraduate course"
 permalink: /teaching/2025-spring-public speaking-1
