@@ -17,7 +17,7 @@ redirect_from:
 
 <!-- ✏️ Replace this starter text with your own bio. Plain text and Markdown both work. -->
 
-Hi, I'm Srish! I'm a PhD student and Graduate Researcher in Communications (Rhetoric, Media, and Publics) at Northwestern University, advised by Professors Robert Hariman and Aaron Shaw at Northwestern. I'm an affiliate researcher with the Community Data Science Collective, and the Science in Human Cultures Cluster. I research how people experience belonging and citizenship to their local, national, and global communities while participating in techno-scientific processes and infrastructure.  
+Hi, I'm Srish! I'm a PhD student and Graduate Researcher in Communications (Rhetoric, Media, and Publics) at Northwestern University, advised by Professors Robert Hariman and Aaron Shaw. I'm an affiliate researcher with the Community Data Science Collective, and the Science in Human Cultures Cluster. I research how people experience belonging and citizenship to their local, national, and global communities while participating in techno-scientific processes and infrastructure.  
 
 My work sits at the intersection of rhetoric, science and technology studies (STS), and critical information studies. I also assist and teach classes in media theory and practice, science and climate communications, and persuasive public speaking. Through research, public work, and teaching, I attempt to ask (and hopefully, answer) a broad question: _how do we learn from each other?_ 
 
