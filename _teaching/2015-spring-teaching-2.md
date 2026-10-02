@@ -1,7 +1,7 @@
 ---
-title: "Voice, Violence, and Democracy"
+title: "COMM ST 103: Voice, Violence, and Democracy"
 collection: teaching
-type: "Workshop"
+type: "Undergraduate Class"
 permalink: /teaching/2025-winter-teaching-1
 venue: "School of Communications, Northwestern University"
 date: 2025-01-04
