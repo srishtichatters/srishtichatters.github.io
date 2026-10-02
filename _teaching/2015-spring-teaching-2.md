@@ -1,14 +1,14 @@
 ---
-title: "Teaching experience 2"
+title: "Voice, Violence, and Democracy"
 collection: teaching
 type: "Workshop"
-permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
-date: 2015-01-01
-location: "City, Country"
+permalink: /teaching/2025-winter-teaching-1
+venue: "School of Communications, Northwestern University"
+date: 2025-01-04
+location: "offered in-person at Evanston, IL"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Taught by Professor Dilip Gaonkar, this class is for advanced undergraduates in Political Communication and American Studies who want to learn on the history of democracy, revolutions, and persuasion, touching on Ancient Greece, Rome, and the American Revolution. As Teaching Assistant, I helped form the syllabus, assign readings, grade papers and give detailed, student-oriented feedback.
 
 Heading 1
 ======
