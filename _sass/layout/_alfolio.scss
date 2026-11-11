@@ -28,7 +28,7 @@
 
 /* ---------- Colours (dark mode, used when the sun/moon toggle is dark) ---------- */
 html[data-theme="dark"] {
-  --global-theme-color            : #2698ba;
+  --global-theme-color            : #c9a0f0;   /* light purple accent in dark mode */
   --global-bg-color               : #1c1c1d;
   --global-footer-bg-color        : #1c1c1d;
   --global-text-color             : #e8e8e8;
@@ -387,3 +387,7 @@ ol.talks-list li.talk-row {
     .talk-date { font-size: 0.85rem; }
   }
 }
+
+/* ---------- Text selection highlight (matches the accent colour) ---------- */
+html[data-theme="dark"] ::selection      { background: #6b4a8f; color: #ffffff; }
+html[data-theme="dark"] ::-moz-selection { background: #6b4a8f; color: #ffffff; }
