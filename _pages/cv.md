@@ -1,64 +1,25 @@
 ---
 layout: archive
-title: "CV"
+title: "cv"
 permalink: /cv/
-author_profile: true
+author_profile: false
 redirect_from:
   - /resume
 ---
-
+{% comment %}
+  To update your CV: replace files/Chatterjee_CV.pdf with the new PDF
+  (keep the same file name), then git add / commit / push.
+{% endcomment %}
 {% include base_path %}
+{% assign cv_pdf = base_path | append: "/files/Chatterjee_CV.pdf" %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+<p class="cv-actions">
+  <a href="{{ cv_pdf }}" class="cv-btn" target="_blank" rel="noopener">Download PDF</a>
+  <span class="cv-updated">Last updated November 2026</span>
+</p>
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+<div class="cv-embed">
+  <iframe src="{{ cv_pdf }}#view=FitH&navpanes=0" title="Srishti Chatterjee CV" loading="lazy"></iframe>
+</div>
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+<p class="cv-fallback">If the CV doesn't appear above, <a href="{{ cv_pdf }}" target="_blank" rel="noopener">open it in a new tab</a>.</p>

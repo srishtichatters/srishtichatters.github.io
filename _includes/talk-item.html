@@ -1,0 +1,19 @@
+{% comment %}
+  One talk / media item, CV style (date on the left).
+  Fields in a file in _talks/:
+    title, date, category        (required; category = invited, conference, panel or press)
+    venue, location              (shown under the title)
+    kind: "Interview"            (press items: shown before the title)
+    note: "Best Paper"           (small grey line underneath)
+    link: "https://..."          (makes the title clickable)
+    date_display: "2021–2022"    (overrides the month/year shown)
+{% endcomment %}
+{% assign t = include.talk %}
+<li class="talk-row">
+  <div class="talk-date">{% if t.date_display %}{{ t.date_display }}{% else %}{{ t.date | date: "%b %Y" }}{% endif %}</div>
+  <div class="talk-body">
+    <div class="title">{% if t.kind %}<span class="talk-kind">{{ t.kind }}</span> {% endif %}{% if t.link %}<a href="{{ t.link }}" target="_blank" rel="noopener">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}</div>
+    {% if t.venue or t.location %}<div class="periodical">{{ t.venue }}{% if t.venue and t.location %}, {% endif %}{{ t.location }}</div>{% endif %}
+    {% if t.note %}<div class="pub-note">{{ t.note }}</div>{% endif %}
+  </div>
+</li>

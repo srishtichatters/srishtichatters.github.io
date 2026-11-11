@@ -1,25 +1,33 @@
 {% comment %}
   One publication in the al-folio style.
   Used on the home page ("selected publications") and on the publications page.
-  Optional fields you can add to a file in _publications/:
-    authors: "Srishti Chatterjee and Co Author"
-    selected: true        <- shows it on the home page
-    paperurl / slidesurl / bibtexurl / link / doi
+  Fields you can use in a file in _publications/:
+    title, date, venue                      (required)
+    authors: "Co Author & <strong>Srishti Chatterjee</strong>"
+    venue_note: "ed. ..., Routledge"         (plain text after the venue)
+    note: "Forthcoming"                      (small grey line underneath)
+    selected: true                           (show it on the home page)
+    link / paperurl / slidesurl / bibtexurl / doi   (buttons)
+  Anything written below the second --- becomes the abstract (ABS button).
 {% endcomment %}
 {% include base_path %}
 {% assign pub = include.pub %}
+{% assign body = pub.content | strip_html | strip %}
 <li>
-  <div class="title">{{ pub.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</div>
+  <div class="title">{% if pub.link %}<a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div>
   {% if pub.authors %}<div class="author">{{ pub.authors }}</div>{% endif %}
   <div class="periodical">
-    {% if pub.venue %}<em>{{ pub.venue }}</em>, {% endif %}{{ pub.date | date: "%Y" }}
+    {% if pub.venue %}<em>{{ pub.venue }}</em>{% if pub.venue_note %}, {{ pub.venue_note }}{% endif %}, {% endif %}{{ pub.date | date: "%Y" }}
   </div>
+  {% if pub.note %}<div class="pub-note">{{ pub.note }}</div>{% endif %}
+  {% if body != "" or pub.doi or pub.paperurl or pub.link or pub.slidesurl or pub.bibtexurl %}
   <div class="links">
-    <a href="{{ base_path }}{{ pub.url }}" class="btn">Abs</a>
+    {% if body != "" %}<a href="{{ base_path }}{{ pub.url }}" class="btn">Abs</a>{% endif %}
     {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" class="btn" target="_blank" rel="noopener">DOI</a>{% endif %}
     {% if pub.paperurl %}<a href="{{ pub.paperurl }}" class="btn" target="_blank" rel="noopener">PDF</a>{% endif %}
     {% if pub.link %}<a href="{{ pub.link }}" class="btn" target="_blank" rel="noopener">HTML</a>{% endif %}
     {% if pub.slidesurl %}<a href="{{ pub.slidesurl }}" class="btn" target="_blank" rel="noopener">Slides</a>{% endif %}
     {% if pub.bibtexurl %}<a href="{{ pub.bibtexurl }}" class="btn" target="_blank" rel="noopener">Bib</a>{% endif %}
   </div>
+  {% endif %}
 </li>

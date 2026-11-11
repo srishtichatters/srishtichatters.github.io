@@ -24,3 +24,13 @@ My work sits at the intersection of rhetoric, science and technology studies (ST
 Outside of work, I'm a community organizer in higher education, and I like to cook for my friends and family. 
 
 
+## News & Announcements
+
+<div style="max-height: 220px; overflow-y: auto; padding-right: 10px;" markdown="1">
+
+- <strong style="color: #6a3d9a;">Oct 03, 2026</strong> — With the Consortium of Science, Policy, and Outcomes, I facilitated the American Science @250 Citizen Assembly at Charleston, WV, gathering 75 members of the public to discuss American science governance issues! 
+- <strong style="color: #6a3d9a;">September 26, 2026</strong> — Started teaching COMM ST: The New Outer Space with Professor James Schwoch
+- <strong style="color: #6a3d9a;">June 15, 2026</strong> — Surrounded by friends and family, I married the love of my life! 
+
+</div>
+
